@@ -27,7 +27,7 @@ echo '# my blacklist' >> $TMPZONEFILE
 # unbound wildcard
 # local-zone: "example.com" redirect
 # local-data: "example.com A 127.0.0.1"
-cat custom.txt | sort -n | uniq | sed -e 's/^\(.*\)$/local-zone: \"\1\" redirect\nlocal-data: \"\1 A 127.0.0.1\"/' >> $TMPZONEFILE
+[[ -f custom.txt ]] && cat custom.txt | sort -n | uniq | sed -e 's/^\(.*\)$/local-zone: \"\1\" redirect\nlocal-data: \"\1 A 127.0.0.1\"/' >> $TMPZONEFILE
 
 mv $ZONEFILE{.tmp,}
 rm $WORKFILE
