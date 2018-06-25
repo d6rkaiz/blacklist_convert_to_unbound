@@ -5,13 +5,13 @@ TMPZONEFILE=$ZONEFILE.tmp
 WORKFILE="blacklist-zone.work"
 
 wget -N https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts -O stevenblack.txt
-tail +30 stevenblack.txt | grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' > $WORKFILE
+tail +40 stevenblack.txt | grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' > $WORKFILE
 
 wget -N http://www.malwaredomainlist.com/hostslist/hosts.txt -O malwaredomainlist.txt
 tail +7 malwaredomainlist.txt | grep -v '^#' | awk '{print $2}' | tr -d '\r' | tr -s '\n' >> $WORKFILE
 
 wget -N http://someonewhocares.org/hosts/hosts -O someonewhocares.txt
-tail +80 someonewhocares.txt| grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' >> $WORKFILE
+tail +85 someonewhocares.txt| grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' >> $WORKFILE
 
 wget -N https://zerodot1.gitlab.io/CoinBlockerLists/hosts -O coinblockerlist.txt
 tail +7 coinblockerlist.txt | grep -v '^#' | awk '{print $2}' | tr -d '\r' | tr -s '\n' >> $WORKFILE
