@@ -4,16 +4,16 @@ ZONEFILE="blacklist-zone.conf"
 TMPZONEFILE=$ZONEFILE.tmp
 WORKFILE="blacklist-zone.work"
 
-wget -N https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts -O stevenblack.txt
+curl -fsSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts -o stevenblack.txt
 tail +40 stevenblack.txt | grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' > $WORKFILE
 
-wget -N http://www.malwaredomainlist.com/hostslist/hosts.txt -O malwaredomainlist.txt
+curl -fsSL http://www.malwaredomainlist.com/hostslist/hosts.txt -o malwaredomainlist.txt
 tail +7 malwaredomainlist.txt | grep -v '^#' | awk '{print $2}' | tr -d '\r' | tr -s '\n' >> $WORKFILE
 
-wget -N http://someonewhocares.org/hosts/hosts -O someonewhocares.txt
+curl -fsSL http://someonewhocares.org/hosts/hosts -o someonewhocares.txt
 tail +85 someonewhocares.txt| grep -v '^\s*#.*$' | grep -v '^#' | awk '{print $2}' | tr -s '\n' >> $WORKFILE
 
-wget -N https://zerodot1.gitlab.io/CoinBlockerLists/hosts -O coinblockerlist.txt
+curl -fsSL https://zerodot1.gitlab.io/CoinBlockerLists/hosts -o coinblockerlist.txt
 tail +7 coinblockerlist.txt | grep -v '^#' | awk '{print $2}' | tr -d '\r' | tr -s '\n' >> $WORKFILE
 
 cat whitelist.txt | while read LINE || [ -n "${LINE}" ]; do
