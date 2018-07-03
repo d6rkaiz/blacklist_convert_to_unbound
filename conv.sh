@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 ZONEFILE="blacklist-zone.conf"
 TMPZONEFILE=$ZONEFILE.tmp
 WORKFILE="blacklist-zone.work"
@@ -33,5 +37,5 @@ echo '# my blacklist' >> $TMPZONEFILE
 # local-data: "example.com A 127.0.0.1"
 [[ -f custom.txt ]] && cat custom.txt | sort -n | uniq | sed -e 's/^\(.*\)$/local-zone: \"\1\" redirect\nlocal-data: \"\1 A 127.0.0.1\"/' >> $TMPZONEFILE
 
-mv $ZONEFILE{.tmp,}
-rm $WORKFILE
+#mv $ZONEFILE{.tmp,}
+#rm $WORKFILE
